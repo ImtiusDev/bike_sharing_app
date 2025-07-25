@@ -33,6 +33,7 @@ migrate_working_dir/
 .pub/
 /build/
 
+
 # Symbolication related
 app.*.symbols
 
@@ -43,5 +44,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/lib/widgets/eventsStack.dart
+/lib/widgets/events_ui_with_logicall_badge.dart
 /lib/screens/test.text

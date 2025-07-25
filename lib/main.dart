@@ -1,5 +1,4 @@
 import 'package:bike_sharing_app/screens/home.dart';
-import 'package:bike_sharing_app/widgets/eventsStack.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,8 +18,8 @@ class MyApp extends StatelessWidget {
           seedColor: Color(0xFF584CF4),
         ),
       ),
-      // home: HomePage(),
-      home: EventsSection(),
+      home: HomePage(),
+      // home: EventsSection(),
     );
   }
 }

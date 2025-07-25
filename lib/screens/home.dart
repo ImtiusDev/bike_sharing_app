@@ -1,5 +1,7 @@
 import 'package:bike_sharing_app/models/users_model.dart';
 import 'package:bike_sharing_app/utils/text_style.dart';
+import 'package:bike_sharing_app/widgets/events_ui_design.dart';
+import 'package:bike_sharing_app/widgets/service_package_card_ui.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,23 +18,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
 
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          
           children: [
             appBar(),
             const SizedBox(height: 20),
-        
+
             nearbyUsers(),
             const SizedBox(height: 20),
-        
-            // Deals of the day section
+
             dealsOfDay(),
             const SizedBox(height: 30),
-            
-            // upcoming events section
+
+            upCommingEvents(),
+            const SizedBox(height: 30),
+
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -40,8 +42,7 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Upcoming Events', style: AppTextStyle.heading),
-              
+                      Text('Buy Service\nPackages', style: AppTextStyle.heading),
                       Row(
                         children: [
                           Text(
@@ -57,59 +58,57 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  
-                  const SizedBox(height: 20,),
-              
-                  Row(
-                    children: [
-                      Container(
-                        height: 125,
-                        // width: screenWidth -32,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: 91,
-                              width: 145,
-                              child: Image.asset('assets/images/Events_scenario (2).png'),
-                            ),
-                            Positioned(
-                              bottom: 125.0-(91.0-5),
-                              left: 5,
-                              child: Stack(
-                                
-                                children: [
-                                  // Positioned(
-                                  //   child: CircleAvatar(
-                                      
-                                  //     backgroundColor: Colors.blue,
-                                  //     foregroundImage: AssetImage('assets/images/event_participants (2).png',
-                                        
-                                  //     ),
-                                  //   ), 
-                                  // ),
-              
-                                  Positioned(
-                                    
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.blue,
-                                      foregroundImage: AssetImage('assets/images/event_participants (3).png'),
-                                    ), 
-                                  ),
-              
-                                  Positioned(
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.blue,
-                                      foregroundImage: AssetImage('assets/images/event_participants (1).png'),
-                                    ), 
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+
+
+
+                  SizedBox(
+                    height: 600,
+                    width: screenWidth - 33,
+
+                    child: GridView(
+
+                      physics: NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 18,
+                        childAspectRatio: 3/4,
+
                       ),
-                    ],
+                      children: [
+                        ServicePackageCardUi(
+                          bgImageUrl: 'assets/images/services_ (1).png',
+                          serviceName: 'Annual Maintenance',
+                          servicePrice: 900,
+                          prevPrice: 1000,
+                        ),
+
+                        ServicePackageCardUi(
+                          bgImageUrl: 'assets/images/services_ (2).png',
+                          serviceName: 'Teflon Coating',
+                          servicePrice: 1350,
+                          prevPrice: 1500,
+                        ),
+
+                        ServicePackageCardUi(
+                          bgImageUrl: 'assets/images/services_ (3).png',
+                          serviceName: 'Annual Maintenance',
+                          servicePrice: 900,
+                          prevPrice: 1000,
+                        ),
+
+                        ServicePackageCardUi(
+                          bgImageUrl: 'assets/images/services_ (4).png',
+                          serviceName: 'Teflon Coating',
+                          servicePrice: 1350,
+                          prevPrice: 1500,
+                        ),
+
+                      ],
+                    ),
                   ),
+                  
                 ],
               ),
             ),
@@ -122,6 +121,62 @@ class _HomePageState extends State<HomePage> {
 
 
 
+  Container upCommingEvents() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Upcoming Events', style: AppTextStyle.heading),
+              Row(
+                children: [
+                  Text('View all', style: AppTextStyle.subHeadingDeepPurple),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                    color: Color(0xFF584CF4),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 15),
+
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              spacing: 10,
+              children: [
+                EventsUiDesign(
+                  backgroundImagePath: 'assets/images/Events_scenario (2).png',
+                  eventName: 'Shimla to Manali',
+                ),
+
+                EventsUiDesign(
+                  backgroundImagePath: 'assets/images/Events_scenario (3).png',
+                  eventName: 'Goa to Gujarat',
+                ),
+
+                EventsUiDesign(
+                  backgroundImagePath: 'assets/images/Events_scenario (4).png',
+                  eventName: 'Kashmir Trip',
+                ),
+
+                EventsUiDesign(
+                  backgroundImagePath: 'assets/images/Events_scenario (1).png',
+                  eventName: 'Trip to Shimla',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   Container dealsOfDay() {
     return Container(
@@ -150,7 +205,7 @@ class _HomePageState extends State<HomePage> {
 
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            
+
             child: Row(
               spacing: 15.0,
               children: [
@@ -223,9 +278,9 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       spacing: 5,
                       children: [
-                        Text('₹ 4,079', style: AppTextStyle.heading),
+                        Text('₹ 2,799', style: AppTextStyle.heading),
                         Text(
-                          '₹ 5,099',
+                          '₹ 3,499',
                           style: AppTextStyle.miniSubTextWithLineThrough,
                         ),
                         Text(
@@ -252,7 +307,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         const SizedBox(width: 5.0),
-                        Text('4.8(212)', style: AppTextStyle.subHeading),
+                        Text('4.5(154)', style: AppTextStyle.subHeading),
                       ],
                     ),
                   ],
@@ -315,8 +370,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //here all extract code
-
   Container appBar() {
     return Container(
       // height: MediaQuery.of(context).size.height,
@@ -336,29 +389,32 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               Image.asset(
-                'icons/ic-3line.png',
-                height: 45,
-                width: 45,
+                'assets/icons/ic-3line.png',
+                height: 40,
+                width: 40,
                 color: Colors.white,
               ),
-              const SizedBox(width: 10),
-              Text("Home", style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Inter',
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              )),
+              const SizedBox(width: 8.0),
+              Text(
+                "Home",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Inter',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ],
           ),
 
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0, right: 30),
+            padding: const EdgeInsets.only(bottom: 8.0, right: 25),
             child: Row(
-              spacing: 30,
+              spacing: 4,
               children: [
-                Image.asset('icons/ic-search.png', height: 20, width: 20),
-                Image.asset('icons/ic-cart.png', height: 20, width: 20),
-                Image.asset('icons/ic-favourite.png', height: 20, width: 20),
+                Image.asset('assets/icons/ic-search.png', height: 20, width: 20),
+                Image.asset('assets/icons/ic-cart.png', height: 20, width: 20),
+                Image.asset('assets/icons/ic-favourite.png', height: 20, width: 20),
               ],
             ),
           ),
@@ -366,6 +422,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-
 }
