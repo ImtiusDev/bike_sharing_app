@@ -1,0 +1,371 @@
+import 'package:bike_sharing_app/models/users_model.dart';
+import 'package:bike_sharing_app/utils/text_style.dart';
+import 'package:flutter/material.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<UsersModel> users = UsersModel.getUsers();
+
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+
+      body: SingleChildScrollView(
+        child: Column(
+          
+          children: [
+            appBar(),
+            const SizedBox(height: 20),
+        
+            nearbyUsers(),
+            const SizedBox(height: 20),
+        
+            // Deals of the day section
+            dealsOfDay(),
+            const SizedBox(height: 30),
+            
+            // upcoming events section
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Upcoming Events', style: AppTextStyle.heading),
+              
+                      Row(
+                        children: [
+                          Text(
+                            'View all',
+                            style: AppTextStyle.subHeadingDeepPurple,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15,
+                            color: Color(0xFF584CF4),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  
+                  const SizedBox(height: 20,),
+              
+                  Row(
+                    children: [
+                      Container(
+                        height: 125,
+                        // width: screenWidth -32,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 91,
+                              width: 145,
+                              child: Image.asset('assets/images/Events_scenario (2).png'),
+                            ),
+                            Positioned(
+                              bottom: 125.0-(91.0-5),
+                              left: 5,
+                              child: Stack(
+                                
+                                children: [
+                                  // Positioned(
+                                  //   child: CircleAvatar(
+                                      
+                                  //     backgroundColor: Colors.blue,
+                                  //     foregroundImage: AssetImage('assets/images/event_participants (2).png',
+                                        
+                                  //     ),
+                                  //   ), 
+                                  // ),
+              
+                                  Positioned(
+                                    
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      foregroundImage: AssetImage('assets/images/event_participants (3).png'),
+                                    ), 
+                                  ),
+              
+                                  Positioned(
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      foregroundImage: AssetImage('assets/images/event_participants (1).png'),
+                                    ), 
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+
+
+  Container dealsOfDay() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Deals of the Day', style: AppTextStyle.heading),
+
+              Row(
+                children: [
+                  Text('View all', style: AppTextStyle.subHeadingDeepPurple),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                    color: Color(0xFF584CF4),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 15),
+
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            
+            child: Row(
+              spacing: 15.0,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 10,
+                  children: [
+                    Image.asset(
+                      'assets/images/helmet1.png',
+                      height: 115,
+                      width: 150,
+                    ),
+
+                    Text(
+                      'Racing Dual Visor Helmet',
+                      style: AppTextStyle.subHeading,
+                    ),
+                    Row(
+                      spacing: 5,
+                      children: [
+                        Text('₹ 4,079', style: AppTextStyle.heading),
+                        Text(
+                          '₹ 5,099',
+                          style: AppTextStyle.miniSubTextWithLineThrough,
+                        ),
+                        Text(
+                          '20% Off',
+                          style: AppTextStyle.miniSubTextDeepPurple,
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 21,
+                          width: 21,
+                          decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Icon(
+                            Icons.star,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(width: 5.0),
+                        Text('4.8(212)', style: AppTextStyle.subHeading),
+                      ],
+                    ),
+                  ],
+                ),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 10,
+                  children: [
+                    Image.asset(
+                      'assets/images/helmet1.png',
+                      height: 115,
+                      width: 150,
+                    ),
+
+                    Text(
+                      'Racing Dual Visor Helmet',
+                      style: AppTextStyle.subHeading,
+                    ),
+                    Row(
+                      spacing: 5,
+                      children: [
+                        Text('₹ 4,079', style: AppTextStyle.heading),
+                        Text(
+                          '₹ 5,099',
+                          style: AppTextStyle.miniSubTextWithLineThrough,
+                        ),
+                        Text(
+                          '20% Off',
+                          style: AppTextStyle.miniSubTextDeepPurple,
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 21,
+                          width: 21,
+                          decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Icon(
+                            Icons.star,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(width: 5.0),
+                        Text('4.8(212)', style: AppTextStyle.subHeading),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container nearbyUsers() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Nearby Users', style: AppTextStyle.heading),
+
+              Row(
+                children: [
+                  Text('View all', style: AppTextStyle.subHeadingDeepPurple),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                    color: Color(0xFF584CF4),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          // Nearby users title & view all
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 100,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => const SizedBox(width: 10),
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                final user = users[index];
+                return Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 32,
+                      backgroundImage: AssetImage(user.imageUrl),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(user.name, style: AppTextStyle.subHeading),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //here all extract code
+
+  Container appBar() {
+    return Container(
+      // height: MediaQuery.of(context).size.height,
+      // width: MediaQuery.of(context).size.width,
+      // child: Text('height: ${MediaQuery.of(context).size.height}\n width: ${MediaQuery.of(context).size.width}',
+      // style: TextStyle(
+      //     color: Colors.white,
+      //     fontSize: 50,
+      // ),),
+      color: Color(0xFF584CF4),
+      height: 120,
+
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                'icons/ic-3line.png',
+                height: 45,
+                width: 45,
+                color: Colors.white,
+              ),
+              const SizedBox(width: 10),
+              Text("Home", style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Inter',
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              )),
+            ],
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0, right: 30),
+            child: Row(
+              spacing: 30,
+              children: [
+                Image.asset('icons/ic-search.png', height: 20, width: 20),
+                Image.asset('icons/ic-cart.png', height: 20, width: 20),
+                Image.asset('icons/ic-favourite.png', height: 20, width: 20),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+}
